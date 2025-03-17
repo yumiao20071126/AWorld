@@ -1,13 +1,15 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 from typing import TypeVar, Generic, Dict, Any
 
-from logs.util import logger
+from aworld.logs.util import logger
 
 T = TypeVar("T")
 
 
 class Factory(Generic[T]):
-    """The base generic class that is used to define a factory for various objects, with a parameterized types: T."""
+    """The base generic class that is used to define a factory(local) for various objects, with a parameterized types: T."""
 
     def __init__(self, type_name: str = None):
         self._type = type_name

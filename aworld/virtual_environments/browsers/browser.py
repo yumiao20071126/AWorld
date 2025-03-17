@@ -1,4 +1,6 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import base64
 import json
 import os
@@ -10,14 +12,14 @@ from typing import Any, Dict, Tuple, List
 from playwright.sync_api import ViewportSize
 from playwright.sync_api import sync_playwright
 
-from core.action import BrowserAction
-from core.common import Observation, ToolActionModel, DomTree, ActionResult, Tools
-from logs.util import logger
-from virtual_environments.env_tool import action_executor, ToolFactory
-from virtual_environments.env_tool import EnvTool
-from virtual_environments.browsers.action.executor import BrowserToolActionExecutor
-from virtual_environments.conf import BrowserToolConfig
-from virtual_environments.browsers.util.dom_build import build_dom_tree
+from aworld.core.action import BrowserAction
+from aworld.core.common import Observation, ToolActionModel, DomTree, ActionResult, Tools
+from aworld.logs.util import logger
+from aworld.virtual_environments.env_tool import action_executor, ToolFactory
+from aworld.virtual_environments.env_tool import EnvTool
+from aworld.virtual_environments.browsers.action.executor import BrowserToolActionExecutor
+from aworld.virtual_environments.conf import BrowserToolConfig
+from aworld.virtual_environments.browsers.util.dom_build import build_dom_tree
 
 URL_MAX_LENGTH = 4096
 UTF8 = "".join(chr(x) for x in range(0, 55290))
@@ -33,7 +35,7 @@ class BrowserTool(EnvTool[Observation, List[ToolActionModel]]):
         self._finish = False
         self.record_trace = self.dict_conf.get("record_trace", False)
         self.sleep_after_init = self.dict_conf.get("sleep_after_init", False)
-        self.js_code = resources.read_text('virtual_environments.browsers.config', 'buildDomTree.js')
+        self.js_code = resources.read_text('aworld.virtual_environments.browsers.config', 'buildDomTree.js')
         self.cur_observation = None
 
     def init(self) -> None:
@@ -134,7 +136,7 @@ class BrowserTool(EnvTool[Observation, List[ToolActionModel]]):
                 logger.info(f'Cookies load from {cookie_file} finished')
 
         if self.dict_conf.get('private'):
-            js = resources.read_text("virtual_environments.browsers.config", "stealth.min.js")
+            js = resources.read_text("aworld.virtual_environments.browsers.config", "stealth.min.js")
             context.add_init_script(js)
 
         return context

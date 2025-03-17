@@ -1,7 +1,9 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 from enum import Enum
 
-from core.common import ToolActionInfo, ParamInfo
+from aworld.core.common import ToolActionInfo, ParamInfo
 
 
 class ToolAction(Enum):

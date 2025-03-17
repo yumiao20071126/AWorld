@@ -1,9 +1,11 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import asyncio
 from functools import wraps
 from typing import Callable, Optional, Union, Any, Dict
 
-from core.task import Task
+from aworld.core.task import Task
 
 
 class FunctionTask(Task):

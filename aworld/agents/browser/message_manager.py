@@ -1,5 +1,8 @@
 # coding: utf-8
 
+# Derive from browser_use, https://github.com/browser-use/browser-use/blob/main/browser_use/agent/message_manager/service.py
+#
+
 import json
 import logging
 from typing import List, Optional
@@ -13,9 +16,9 @@ from langchain_core.messages import (
 )
 from pydantic import BaseModel
 
-from agents.browser_agents.prompts import AgentMessagePrompt
-from agents.common import AgentStepInfo, MessageManagerState, MessageMetadata, LlmResult
-from core.common import ToolActionModel, Observation, ActionResult
+from aworld.agents.browser.prompts import AgentMessagePrompt
+from aworld.agents.common import AgentStepInfo, MessageManagerState, MessageMetadata, LlmResult
+from aworld.core.common import ToolActionModel, Observation, ActionResult
 
 
 logger = logging.getLogger(__name__)

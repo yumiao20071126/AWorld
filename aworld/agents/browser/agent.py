@@ -1,5 +1,7 @@
 # coding: utf-8
 
+# In our framework's browser agent, we use the prompt and message management of browser_use to demonstrate the scalability of our framework.
+
 import re
 import time
 import traceback
@@ -8,16 +10,16 @@ from typing import Dict, Any, Optional, List
 from langchain_core.messages import HumanMessage, BaseMessage
 from pydantic import ValidationError
 
-from agents.base import Agent, AgentFactory
-from agents.browser_agents.message_manager import MessageManager, MessageManagerSettings
-from agents.browser_agents.prompts import SystemPrompt
-from agents.browser_agents.utils import convert_input_messages, extract_json_from_model_output
-from agents.common import AgentState, AgentStepInfo, AgentHistory, PolicyMetadata, AgentBrain, LlmResult
-from config.conf import AgentConfig
-from core.action import BrowserAction
-from core.common import Observation, ToolActionModel, Tools, ToolActionInfo, Agents
-from logs.util import logger
-from models.llm import get_llm_model
+from aworld.agents.base import Agent, AgentFactory
+from aworld.agents.browser.message_manager import MessageManager, MessageManagerSettings
+from aworld.agents.browser.prompts import SystemPrompt
+from aworld.agents.browser.utils import convert_input_messages, extract_json_from_model_output
+from aworld.agents.common import AgentState, AgentStepInfo, AgentHistory, PolicyMetadata, AgentBrain, LlmResult
+from aworld.config.conf import AgentConfig
+from aworld.core.action import BrowserAction
+from aworld.core.common import Observation, ToolActionModel, Tools, ToolActionInfo, Agents
+from aworld.logs.util import logger
+from aworld.models.llm import get_llm_model
 
 
 @AgentFactory.register(name=Agents.BROWSER.value, desc="browser agent")

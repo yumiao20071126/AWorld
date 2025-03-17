@@ -1,4 +1,5 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 
 from typing import Dict, Any, Tuple, SupportsFloat
 
@@ -6,10 +7,10 @@ import gymnasium
 
 from gymnasium import spaces
 
-from config.conf import ToolConfig
-from core.action import GymAction
-from core.common import Tools
-from virtual_environments.env_tool import AsyncEnvTool, ToolFactory
+from aworld.config.conf import ToolConfig
+from aworld.core.action import GymAction
+from aworld.core.common import Tools
+from aworld.virtual_environments.env_tool import AsyncEnvTool, ToolFactory
 
 
 class ActionType(object):

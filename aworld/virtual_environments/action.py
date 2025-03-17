@@ -1,7 +1,10 @@
-import abc
-from typing import Tuple, List, Any
+# coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 
-from core.common import ToolActionModel, ActionResult
+import abc
+from typing import Tuple, Any
+
+from aworld.core.common import ToolActionModel, ActionResult
 
 
 class ExecutableAction(object):

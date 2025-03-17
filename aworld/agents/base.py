@@ -1,10 +1,12 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import abc
 from typing import Generic, TypeVar, Dict, Any, List, Tuple
 
-from agents.common import LlmResult
-from config.conf import AgentConfig
-from core.factory import Factory
+from aworld.agents.common import LlmResult
+from aworld.config.conf import AgentConfig
+from aworld.core.factory import Factory
 
 INPUT = TypeVar('INPUT')
 OUTPUT = TypeVar('OUTPUT')

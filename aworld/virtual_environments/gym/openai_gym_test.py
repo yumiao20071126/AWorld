@@ -1,8 +1,9 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 
 import unittest
 
-from virtual_environments.gym.openai_gym import OpenAIGym
+from aworld.virtual_environments.gym.openai_gym import OpenAIGym
 
 
 class OpenAIGymTest(unittest.TestCase):

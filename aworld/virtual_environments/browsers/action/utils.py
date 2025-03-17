@@ -1,4 +1,6 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import re
 import time
 import traceback
@@ -7,8 +9,8 @@ from typing import Optional
 from playwright.sync_api import Page, ElementHandle, FrameLocator, BrowserContext
 from playwright.async_api import Page as APage, ElementHandle as AElementHandle, FrameLocator as AFrameLocator, BrowserContext as ABrowserContext
 
-from core.dom import DOMElementNode
-from logs.util import logger
+from aworld.core.dom import DOMElementNode
+from aworld.logs.util import logger
 
 
 def wait_for_stable_network(page: Page,

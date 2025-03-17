@@ -5,12 +5,12 @@ import abc
 import traceback
 from typing import Dict, Tuple, Any, TypeVar, Generic, List, Union
 
-from config.conf import ToolConfig
-from core.action import ToolAction
-from core.action_factory import ActionFactory
-from core.common import Observation, ToolActionModel, ActionResult, Tools
-from core.factory import Factory
-from logs.util import logger
+from aworld.config.conf import ToolConfig
+from aworld.core.action import ToolAction
+from aworld.core.action_factory import ActionFactory
+from aworld.core.common import Observation, ToolActionModel, ActionResult, Tools
+from aworld.core.factory import Factory
+from aworld.logs.util import logger
 
 AgentInput = TypeVar("AgentInput")
 ToolInput = TypeVar("ToolInput")

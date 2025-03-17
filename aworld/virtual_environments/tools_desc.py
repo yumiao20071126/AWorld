@@ -1,13 +1,14 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 
 from typing import List, Dict
 
 from anthropic import BaseModel
 
-from core.action_factory import ActionFactory
-from core.common import ParamInfo
-from logs.util import logger
-from virtual_environments.env_tool import ToolFactory
+from aworld.core.action_factory import ActionFactory
+from aworld.core.common import ParamInfo
+from aworld.logs.util import logger
+from aworld.virtual_environments.env_tool import ToolFactory
 
 
 class ActionDescriptionProtocol(BaseModel):

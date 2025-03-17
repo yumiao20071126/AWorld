@@ -1,4 +1,7 @@
 # coding: utf-8
+
+# Derived from browser_use DomService, we use it as a utility method, and supports sync and async.
+
 import gc
 import json
 
@@ -7,9 +10,9 @@ from typing import Dict, Any, Tuple, Optional
 from playwright.sync_api import Page
 from playwright.async_api import Page as APage
 
-from core.async_func import async_func
-from core.dom import DOMElementNode, DOMBaseNode, DOMTextNode, ViewportInfo
-from logs.util import logger
+from aworld.core.async_func import async_func
+from aworld.core.dom import DOMElementNode, DOMBaseNode, DOMTextNode, ViewportInfo
+from aworld.logs.util import logger
 
 
 async def async_build_dom_tree(page: APage, js_code: str, args: Dict[str, Any]) -> Tuple[DOMElementNode, Dict[int, DOMElementNode]]:

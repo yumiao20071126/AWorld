@@ -7,8 +7,8 @@ from typing import List, Optional
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from agents.common import AgentStepInfo
-from core.common import Observation, ActionResult
+from aworld.agents.common import AgentStepInfo
+from aworld.core.common import Observation, ActionResult
 
 
 class SystemPrompt:

@@ -1,6 +1,7 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import asyncio
-import markdownify
 import time
 from typing import Tuple, Any
 
@@ -8,14 +9,14 @@ from langchain_core.prompts import PromptTemplate
 from playwright.sync_api import Page, BrowserContext
 from playwright.async_api import Page as APage, BrowserContext as ABrowserContext
 
-from core.action import BrowserAction
-from core.action_factory import ActionFactory
-from core.common import ToolActionModel, ActionResult, Observation, Tools
-from core.dom import DOMElementNode
-from logs.util import logger
-from virtual_environments.browsers.action.utils import get_locate_element, click_element, wait_for_stable_network, \
+from aworld.core.action import BrowserAction
+from aworld.core.action_factory import ActionFactory
+from aworld.core.common import ToolActionModel, ActionResult, Observation, Tools
+from aworld.core.dom import DOMElementNode
+from aworld.logs.util import logger
+from aworld.virtual_environments.browsers.action.utils import get_locate_element, click_element, \
     async_click_element, async_get_locate_element
-from virtual_environments.action import ExecutableAction
+from aworld.virtual_environments.action import ExecutableAction
 
 
 def get_page(**kwargs):
@@ -379,6 +380,8 @@ class GoBack(ExecutableAction):
                         tool_name=Tools.BROWSER.value)
 class ExtractContent(ExecutableAction):
     def act(self, action: ToolActionModel, **kwargs) -> Tuple[ActionResult, Any]:
+        import markdownify
+
         logger.info(f"exec {BrowserAction.EXTRACT_CONTENT.value.name} action")
         page: Page = get_page(**kwargs)
         if page is None:
@@ -403,6 +406,8 @@ class ExtractContent(ExecutableAction):
             return ActionResult(content=msg), page
 
     async def async_act(self, action: ToolActionModel, **kwargs) -> Tuple[ActionResult, Any]:
+        import markdownify
+
         logger.info(f"exec {BrowserAction.EXTRACT_CONTENT.value.name} action")
         page: APage = get_page(**kwargs)
         if page is None:

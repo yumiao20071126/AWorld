@@ -1,8 +1,7 @@
-import base64
-import json
+
+# Derived from browser_use
+
 import os
-import time
-from pathlib import Path
 
 from langchain_anthropic import ChatAnthropic
 from openai import OpenAI
@@ -12,7 +11,6 @@ from langchain_core.language_models.base import (
 from langchain_core.messages import (
     AIMessage,
     SystemMessage,
-    BaseMessage, ChatMessage,
 )
 from langchain_core.runnables import RunnableConfig
 from langchain_mistralai import ChatMistralAI
@@ -20,53 +18,12 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_ollama import ChatOllama
 from langchain_openai import AzureChatOpenAI, ChatOpenAI
 
-from typing import (
-    Any,
-    Optional, Dict,
-)
+from typing import Any, Optional
 
-from config.conf import AgentConfig, ModelConfig
-from models.adapters.gpt_proxy import AntGPTProxy
-
-
-class AntgptOpenAI(ChatOpenAI):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.client = AntGPTProxy(
-            model_name=kwargs.get("model_name")
-        )
-
-    async def ainvoke(
-            self,
-            input: LanguageModelInput,
-            config: Optional[RunnableConfig] = None,
-            *,
-            stop: Optional[list[str]] = None,
-            **kwargs: Any,
-    ) -> BaseMessage:
-        request, response = await self.client.async_invoke(input)
-        response = response['choices'][0]['message']['content']
-        if not isinstance(response, str):
-            response = str(response)
-        return ChatMessage(content=response, role="assistant")
-
-    def invoke(
-            self,
-            input: LanguageModelInput,
-            config: Optional[RunnableConfig] = None,
-            *,
-            stop: Optional[list[str]] = None,
-            **kwargs: Any,
-    ) -> BaseMessage:
-        request, response = self.client.invoke(input)
-        response = response['choices'][0]['message']['content']
-        if not isinstance(response, str):
-            response = str(response)
-        return ChatMessage(content=response, role="assistant")
+from aworld.config.conf import AgentConfig, ModelConfig
 
 
 class DeepSeekR1ChatOpenAI(ChatOpenAI):
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.client = OpenAI(
@@ -173,14 +130,6 @@ PROVIDER_DISPLAY_NAMES = {
 }
 
 
-def get_llm_vision_mode(provider: str, conf: ModelConfig, **kwargs) -> ChatOpenAI:
-    if provider == 'antgpt':
-        return AntgptOpenAI(api_key=conf.llm_api_key,
-                            model_name=conf.llm_model_name)
-    else:
-        raise ValueError(f"Unsupported provider: {provider}")
-
-
 def get_llm_model(conf: AgentConfig, **kwargs):
     provider = conf.llm_provider
     if provider not in ["ollama"]:
@@ -233,7 +182,7 @@ def get_llm_model(conf: AgentConfig, **kwargs):
             model=kwargs.get("model_name", "gpt-4o"),
             temperature=kwargs.get("temperature", 0.0),
             base_url=base_url,
-            api_key="sk-cJlgP9y7WuYwrzxDDc0491970e4e46B4A0012f7bA6A5E269",
+            api_key=api_key,
         )
     elif provider == "deepseek":
         if not kwargs.get("base_url", ""):

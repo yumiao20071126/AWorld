@@ -1,10 +1,12 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import logging
 import sys
 from typing import Dict, List
 
-from core.factory import Factory
-from logs.util import logger
+from aworld.core.factory import Factory
+from aworld.logs.util import logger
 
 
 class ActionManager(Factory):

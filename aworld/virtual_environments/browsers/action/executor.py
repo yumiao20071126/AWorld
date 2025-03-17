@@ -1,12 +1,14 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 from typing import Tuple, List
 
 from playwright.sync_api import Page, BrowserContext
 
-from core.action_factory import ActionFactory
-from core.common import ToolActionModel, ActionResult, Observation
-from logs.util import logger
-from virtual_environments.env_tool import EnvTool, ToolActionExecutor
+from aworld.core.action_factory import ActionFactory
+from aworld.core.common import ToolActionModel, ActionResult, Observation
+from aworld.logs.util import logger
+from aworld.virtual_environments.env_tool import EnvTool, ToolActionExecutor
 
 
 class BrowserToolActionExecutor(ToolActionExecutor):

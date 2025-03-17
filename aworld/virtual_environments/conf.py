@@ -1,7 +1,8 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 import os
 
-from config.conf import ToolConfig, ModelConfig
+from aworld.config.conf import ToolConfig, ModelConfig
 
 
 class BrowserToolConfig(ToolConfig):

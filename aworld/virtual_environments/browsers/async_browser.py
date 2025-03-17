@@ -1,4 +1,6 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import asyncio
 import base64
 import json
@@ -10,13 +12,13 @@ from typing import Any, Dict, Tuple, List
 from playwright.async_api import ViewportSize
 from playwright.async_api import async_playwright
 
-from core.action import BrowserAction
-from core.common import Observation, ToolActionModel, DomTree, ActionResult, Tools
-from logs.util import logger
-from virtual_environments.env_tool import action_executor, ToolFactory, AsyncEnvTool
-from virtual_environments.browsers.action.executor import BrowserToolActionExecutor
-from virtual_environments.conf import BrowserToolConfig
-from virtual_environments.browsers.util.dom_build import build_dom_tree, async_build_dom_tree
+from aworld.core.action import BrowserAction
+from aworld.core.common import Observation, ToolActionModel, DomTree, ActionResult, Tools
+from aworld.logs.util import logger
+from aworld.virtual_environments.env_tool import action_executor, ToolFactory, AsyncEnvTool
+from aworld.virtual_environments.browsers.action.executor import BrowserToolActionExecutor
+from aworld.virtual_environments.conf import BrowserToolConfig
+from aworld.virtual_environments.browsers.util.dom_build import build_dom_tree, async_build_dom_tree
 
 URL_MAX_LENGTH = 4096
 UTF8 = "".join(chr(x) for x in range(0, 55290))

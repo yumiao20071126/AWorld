@@ -1,3 +1,4 @@
+// Derived from browser_use https://github.com/browser-use/browser-use/blob/main/browser_use/dom/buildDomTree.js
 (
   args = {
     doHighlightElements: true,

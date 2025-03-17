@@ -1,10 +1,12 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 from enum import Enum
 
 from pydantic import BaseModel
 from typing import Dict, Any, Union, List
 
-from core.dom import DOMElementNode
+from aworld.core.dom import DOMElementNode
 
 
 class ActionResult(BaseModel):

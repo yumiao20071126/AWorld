@@ -1,18 +1,20 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
+
 import os
 
 from pydantic import BaseModel
 
-from core.common import Tools
-from core.task import Task
-from agents.browser_agents.agent import BrowserAgent
-from config.conf import AgentConfig, TaskConfig
-from virtual_environments.browsers.browser import BrowserTool
-from logs.util import logger
-from virtual_environments.conf import BrowserToolConfig
-from virtual_environments.env_tool import ToolFactory
+from aworld.core.common import Tools
+from aworld.core.task import Task
+from aworld.agents.browser.agent import BrowserAgent
+from aworld.config.conf import AgentConfig, TaskConfig
+from aworld.logs.util import logger
+from aworld.virtual_environments.conf import BrowserToolConfig
+from aworld.virtual_environments.env_tool import ToolFactory
 
 os.environ['OPENAI_API_KEY'] = ""
+
 
 # Create the global agent state instance
 class BrowserTask(Task):

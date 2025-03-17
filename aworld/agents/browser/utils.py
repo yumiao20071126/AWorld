@@ -1,7 +1,6 @@
-from __future__ import annotations
+# coding: utf-8
 
 import json
-import logging
 import os
 from typing import Any, Optional, Type
 
@@ -13,7 +12,7 @@ from langchain_core.messages import (
 	ToolMessage,
 )
 
-logger = logging.getLogger(__name__)
+from aworld.logs.util import logger
 
 
 def extract_json_from_model_output(content: str) -> dict:

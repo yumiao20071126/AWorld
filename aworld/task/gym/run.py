@@ -1,15 +1,16 @@
 # coding: utf-8
+# Copyright (c) 2025 inclusionAI.
 import asyncio
 import time
 import numpy as np
 from typing import Any, Dict
 
-from agents.base import Agent
-from config.conf import AgentConfig
-from core.task import Task
-from logs.util import logger
-from virtual_environments.gym.openai_gym import OpenAIGym
-from virtual_environments.gym.async_openai_gym import OpenAIGym as AOpenAIGym
+from aworld.agents.base import Agent
+from aworld.config.conf import AgentConfig
+from aworld.core.task import Task
+from aworld.logs.util import logger
+from aworld.virtual_environments.gym.openai_gym import OpenAIGym
+from aworld.virtual_environments.gym.async_openai_gym import OpenAIGym as AOpenAIGym
 
 
 class GymAgent(Agent):
@@ -93,12 +94,12 @@ async def async_run_gym_game(gym_env_tool_id: str, wrappers: list = [], **kwargs
 
 
 if __name__ == "__main__":
-    # We can run the task use utility method, as follows:
+    # # We can run the task use utility method, as follows:
     run_gym_game('CartPole-v0', render_mode='human')
 
-    # when solving complex scenarios, can also run tasks like this:
+    # # when solving complex scenarios, can also run tasks like this:
     task = GymTask({"env_tool_id": 'CartPole-v0', "render_mode": 'human'})
-    task.run()
+    task.start()
 
     # async run gym
     asyncio.run(async_run_gym_game('CartPole-v0', render_mode='human'))
