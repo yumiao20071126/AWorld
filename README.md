@@ -23,7 +23,7 @@ aworld-web start
 ### Demo1
 https://code.alipay.com/SOTA/operator/blob/android_complete/readme_assets/AWorld-demo-1.mov
 
-### or Creating Your Own Agent
+### or Creating Your Own Agent 
 Here is an example of running tasks from the [GAIA](https://huggingface.co/gaia-benchmark) benchmark:
 
 ## Contributing
