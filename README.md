@@ -26,10 +26,10 @@ Easily configure and run a pre-defined agent through our web interface:
 ```bash
 aworld-web start
 ```
-### Demo1
-https://code.alipay.com/SOTA/operator/blob/android_complete/readme_assets/AWorld-demo-1.mov
+Next, input a user query for a quick test. Below are two demos showcasing how a single agent can use both a browser and a phone, respectively.
 
-### or Creating Your Own Agent 
+
+### or Creating Your Own Agents
 Here is an example of running tasks from the [GAIA](https://huggingface.co/gaia-benchmark) benchmark:
 
 ## Contributing
