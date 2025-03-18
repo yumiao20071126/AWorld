@@ -1,4 +1,10 @@
-# AWorld
+<p align="center">
+  <img src="readme_assets/aworld_logo.png" alt="AWorld Logo" width="100"/>
+  <br>
+  <span align="center" style="font-size: 24px;">
+    <b><span style="color: var(--color-accent-fg, #1677FF);">A</span><span style="color: var(--color-fg-default, #333333);">World</span></b>
+  </span>
+</p>
 
 > **Build, evaluate and run General Multi-Agent Assistance with ease**
 
