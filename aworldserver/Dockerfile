@@ -38,7 +38,6 @@ RUN cd /app/ && \
     rm chromedriver-linux64.zip
 ENV CHROME_DRIVER_PATH=/app/chromedriver-linux64/chromedriver
 
-RUN npx playwright install chrome
 
 
 FROM base as runner
@@ -70,6 +69,7 @@ RUN mkdir -p /app/lib
 RUN cd /app/lib && git clone https://github.com/inclusionAI/AWorld.git
 RUN cd /app/lib/AWorld && git checkout framework_upgrade_aworldserver_gaia && pip install -r aworld/requirements.txt ${PIP_OPTIONS} && python setup.py install
 
+RUN npx playwright install chrome
 
 RUN cd /app
 
