@@ -41,7 +41,6 @@ RUN apt-get update && apt-get install -y \
     libdrm2 \
     libgbm1 \
     libgtk-3-0 \
-    libgtk-4-1 \
     libnspr4 \
     libnss3 \
     libx11-xcb1 \
@@ -49,34 +48,6 @@ RUN apt-get update && apt-get install -y \
     libxdamage1 \
     libxrandr2 \
     xdg-utils \
-    libgstreamer1.0-0 \
-    libgstreamer-plugins-base1.0-0 \
-    libgraphene-1.0-0 \
-    libxslt1.1 \
-    libwoff1 \
-    libvpx7 \
-    libevent-2.1-7 \
-    libopus0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly \
-    gstreamer1.0-libav \
-    gstreamer1.0-gl \
-    gstreamer1.0-gtk4 \
-    gstreamer1.0-alsa \
-    gstreamer1.0-pulseaudio \
-    gstreamer1.0-x \
-    gstreamer1.0-tools \
-    libflite1 \
-    libwebpdemux2 \
-    libharfbuzz-icu0 \
-    libwebpmux3 \
-    libenchant-2-2 \
-    libsecret-1-0 \
-    libhyphen0 \
-    libmanette-0.2-0 \
-    libx264-163 \
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
