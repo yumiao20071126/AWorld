@@ -1,5 +1,6 @@
 # Initialize AworldTaskClient with server endpoints
 import asyncio
+import random
 import uuid
 
 from aworld_client import AworldTask, AworldTaskClient
@@ -17,6 +18,7 @@ async def _run_gaia_task(gaia_question_id: str) -> None:
     """
     global AWORLD_TASK_CLIENT
     task_id = str(uuid.uuid4())
+    await asyncio.sleep(random.random() * 10)
 
     # Submit task to Aworld server
     await AWORLD_TASK_CLIENT.submit_task(
@@ -50,4 +52,4 @@ async def _batch_run_gaia_task(start_i: int, end_i: int) -> None:
 
 if __name__ == '__main__':
     # Run batch processing for questions 1-5
-    asyncio.run(_batch_run_gaia_task(138, 138))
+    asyncio.run(_batch_run_gaia_task(5, 6))
