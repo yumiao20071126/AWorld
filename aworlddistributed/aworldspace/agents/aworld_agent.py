@@ -7,6 +7,7 @@ from aworld.config.conf import AgentConfig
 from pydantic import BaseModel, Field
 
 from aworldspace.base_agent import AworldBaseAgent
+from aworldspace.utils.mcp_utils import load_all_mcp_config
 
 GAIA_SYSTEM_PROMPT = f"""You are an all-capable AI assistant, aimed at solving any task presented by the user. You have various tools at your disposal that you can call upon to efficiently complete complex requests. Whether it's programming, information retrieval, file processing, or web browsing, you can handle it all.
 Please note that the task may be complex. Do not attempt to solve it all at once. You should break the task down and use different tools step by step to solve it. After using each tool, clearly explain the execution results and suggest the next steps.
@@ -18,6 +19,18 @@ Here are some tips to help you give better instructions:
 <tips>
 1. Do not use any tools outside of the provided tools list.
 2. Even if the task is complex, there is always a solution. If you can’t find the answer using one method, try another approach or use different tools to find the solution.
+3. When using browser `playwright_click` tool, you need to check if the element exists and is clickable before clicking it. 
+4. Before providing the `final answer`, carefully reflect on whether the task has been fully solved. If you have not solved the task, please provide your reasoning and suggest the next steps.
+5. Due to context length limitations, always try to complete browser-based tasks with the minimal number of steps possible.
+6. When providing the `final answer`, answer the user's question directly and precisely. For example, if asked "what animal is x?" and x is a monkey, simply answer "monkey" rather than "x is a monkey".
+7. When you need to process excel file, prioritize using the `excel` tool instead of writing custom code with `terminal-controller` tool.
+8. If you need to download a file, please use the `terminal-controller` tool to download the file and save it to the specified path.
+9. The browser doesn't support direct searching on www.google.com. Use the `google-search` to get the relevant website URLs or contents instead of `ms-playwright` directly.
+10. Always use only one tool at a time in each step of your execution.
+11. Using `mcp__ms-playwright__browser_pdf_save` tool to save the pdf file of URLs to the specified path.
+12. Using `mcp__terminal-controller__execute_command` tool to set the timeout to 300 seconds when downloading large files such as pdf.
+13. Using `mcp__ms-playwright__browser_take_screenshot` tool to save the screenshot of URLs to the specified path when you need to understand the gif / jpg of the URLs.
+14. When there are questions related to YouTube video comprehension, use tools in `youtube_download_server` and `video_server` to analyze the video content by the given question.
 </tips>
 
 Now, here is the task. Stay focused and complete it carefully using the appropriate tools!
@@ -46,7 +59,7 @@ class Pipeline(AworldBaseAgent):
         logging.info("aworld init success")
 
     async def get_custom_input(self, user_message: str, model_id: str, messages: List[dict], body: dict) -> Any:
-        return user_message +"\n cur time is "+ str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        return user_message +"\n cur time is "+ str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + "\n please use chinese"
 
     async def get_agent_config(self):
         return self.agent_config
@@ -56,22 +69,20 @@ class Pipeline(AworldBaseAgent):
 
     async def get_mcp_servers(self) -> list[str]:
         return [
-            "browser_server"
+            "e2b-server",
+            "terminal-controller",
+            "excel",
+            "calculator",
+            "ms-playwright",
+            "audio_server",
+            "image_server",
+            "video_server",
+            "search_server",
+            "download_server",
+            # "document_server",
+            "youtube_server",
+            "reasoning_server",
         ]
 
     async def load_mcp_config(self) -> dict:
-        return {
-            "mcpServers": {
-
-                "browser_server": {
-                    "command": "python",
-                    "args": [
-                        "-m",
-                        "mcp_servers.browser_server"
-                    ],
-                    "env": {
-                        "SESSION_REQUEST_CONNECT_TIMEOUT": "120"
-                    }
-                }
-            }
-        }
+        return load_all_mcp_config()
