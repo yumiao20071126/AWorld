@@ -44,12 +44,14 @@ class OpenAIProvider(LLMProviderBase):
                 max_retries=self.kwargs.get("max_retries", 3)
             )
             self.is_http_provider = True
+            print("if")
             return self.http_provider
         else:
+            print("else")
             return OpenAI(
                 api_key=api_key,
                 base_url=base_url,
-                timeout=self.kwargs.get("timeout", 180),
+                timeout=self.kwargs.get("timeout", 3000),
                 max_retries=self.kwargs.get("max_retries", 3)
             )
 
@@ -74,7 +76,7 @@ class OpenAIProvider(LLMProviderBase):
         return AsyncOpenAI(
             api_key=api_key,
             base_url=base_url,
-            timeout=self.kwargs.get("timeout", 180),
+            timeout=self.kwargs.get("timeout",3000),
             max_retries=self.kwargs.get("max_retries", 3)
         )
 
@@ -431,7 +433,7 @@ class OpenAIProvider(LLMProviderBase):
             "messages": messages,
             "temperature": temperature,
             "max_tokens": max_tokens,
-            "stop": stop
+            # "stop": stop
         }
 
         supported_params = [
